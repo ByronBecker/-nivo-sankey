@@ -350,6 +350,9 @@ var SankeyLinksItem = function SankeyLinksItem(_ref2) {
     var path = _ref2.path,
         width = _ref2.width,
         color = _ref2.color,
+        defaultColor = _ref2.defaultColor,
+        startColor = _ref2.startColor,
+        endColor = _ref2.endColor,
         opacity = _ref2.opacity,
         contract = _ref2.contract,
         blendMode = _ref2.blendMode,
@@ -370,8 +373,8 @@ var SankeyLinksItem = function SankeyLinksItem(_ref2) {
                 x1: link.source.x,
                 x2: link.target.x
             },
-            React__default.createElement('stop', { offset: '0%', stopColor: link.source.color }),
-            React__default.createElement('stop', { offset: '100%', stopColor: link.target.color })
+            React__default.createElement('stop', { offset: '0%', stopColor: link.startColor || link.source.color }),
+            React__default.createElement('stop', { offset: '100%', stopColor: link.endColor || link.target.color })
         ),
         React__default.createElement('path', {
             fill: 'none',
@@ -407,6 +410,8 @@ SankeyLinksItem.propTypes = {
     path: PropTypes.string.isRequired,
     width: PropTypes.number.isRequired,
     color: PropTypes.string.isRequired,
+    startColor: PropTypes.string,
+    endColor: PropTypes.string,
     opacity: PropTypes.number.isRequired,
     contract: PropTypes.number.isRequired,
     blendMode: core.blendModePropType.isRequired,
